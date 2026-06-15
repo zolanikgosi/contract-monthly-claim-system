@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - College Management System</title>
+    <style>
+        /* Basic styling for the login page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        .signup {
+            margin-top: 20px;
+        }
+
+            .signup a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .signup a:hover {
+                    text-decoration: underline;
+                }
+
+        .privacy-container {
+            margin-top: 10px;
+        }
+
+            .privacy-container a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .privacy-container a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>College Management System</h1>
+
+        <form id="loginForm" action="javascript:void(0);" onsubmit="validateLogin()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Josh">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Link to submit a claim -->
+        <a href="/Claims/SubmitClaim" class="btn btn-lg btn-primary btn-block shadow-sm">Submit a Claim</a>
+
+        <!-- Privacy button -->
+        <div class="privacy-container">
+            <p><a href="/Privacy">Privacy Policy</a></p>
+        </div>
+
+        <div class="signup">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the visibility of the password field
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        // Function to validate the login credentials
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Check against hardcoded credentials (change "yourpassword" to actual password)
+            if (username === "Kgosi" && password === "yourpassword") {
+                alert("Login Successful!");
+                // Redirect to dashboard
+                window.location.href = "/dashboard"; // Example redirect
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+    </script>
+
+</body>
+</html>

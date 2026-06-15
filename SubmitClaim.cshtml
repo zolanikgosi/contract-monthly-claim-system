@@ -1,0 +1,40 @@
+﻿@model Contract_Monthly_Claim_System_POE.Models.Claim
+
+@{
+    ViewBag.Title = "Submit Claim";
+    var lecturers = ViewBag.Lecturers as List<Contract_Monthly_Claim_System_POE.Models.Lecturer>;
+}
+
+<h2>Submit Claim</h2>
+
+<form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="lecturer">Select Lecturer</label>
+        <select id="lecturer" name="lecturerID" class="form-control">
+            @foreach (var lecturer in lecturers)
+            {
+                <option value="@lecturer.LecturerID">@lecturer.FirstName @lecturer.LastName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="hoursWorked">Hours Worked</label>
+        <input type="number" id="hoursWorked" name="hoursWorked" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="hourlyRate">Hourly Rate</label>
+        <input type="number" id="hourlyRate" name="hourlyRate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="notes">Additional Notes</label>
+        <textarea id="notes" name="notes" class="form-control"></textarea>
+    </div>
+
+    <!-- File Upload -->
+    <div class="form-group">
+        <label for="supportingDoc">Upload Supporting Document (PDF, DOCX, XLSX, Max: 5MB)</label>
+        <input type="file" id="supportingDoc" name="supportingDoc" accept=".pdf,.docx,.xlsx" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+</form>

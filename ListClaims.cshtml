@@ -1,0 +1,38 @@
+﻿@model List<Contract_Monthly_Claim_System_POE.Models.Claim>
+
+<h2>All Claims</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer Name</th>
+            <th>Date</th>
+            <th>Hours Worked</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.ClaimID</td>
+                <td>
+                    @if (claim.Lecturer != null)
+                    {
+                        @claim.Lecturer.FirstName @claim.Lecturer.LastName
+                    }
+                    else
+                    {
+                        <span>N/A</span> <!-- Handle the case where the lecturer is null -->
+                    }
+                </td>
+                <td>@claim.Date.ToShortDateString()</td>
+                <td>@claim.HoursWorked</td>
+                <td>@claim.TotalAmount.ToString("C")</td> <!-- Format total amount as currency -->
+                <td>@claim.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

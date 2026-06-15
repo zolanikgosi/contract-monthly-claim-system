@@ -1,0 +1,37 @@
+﻿@model List<Contract_Monthly_Claim_System_POE.Models.Claim>
+
+<h2>Pending Claims</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer</th>
+            <th>Date</th>
+            <th>Hours Worked</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model.Where(c => c.Status == "Pending"))
+        {
+            <tr>
+                <td>@claim.ClaimID</td>
+                <td>@claim.Lecturer.FirstName @claim.Lecturer.LastName</td>
+                <td>@claim.Date.ToShortDateString()</td>
+                <td>@claim.HoursWorked</td>
+                <td>@claim.TotalAmount</td>
+                <td>@claim.Status</td>
+                <td>
+                    <form asp-action="VerifyClaim" method="post">
+                        <input type="hidden" name="claimID" value="@claim.ClaimID" />
+                        <button type="submit" name="action" value="Approve" class="btn btn-success">Approve</button>
+                        <button type="submit" name="action" value="Reject" class="btn btn-danger">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
